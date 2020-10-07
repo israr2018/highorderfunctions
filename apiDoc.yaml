@@ -1,0 +1,196 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a sample Petstore server.  You can find 
+    out more about Swagger at 
+    [http://swagger.io](http://swagger.io) or on 
+    [irc.freenode.net, #swagger](http://swagger.io/irc/).
+  version: 1.0.0
+  title: Swagger Petstore
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: "languages"
+  description: Everything about your Languages
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+  
+- name: "LanguageStrings"
+  description: Everything about your Language Strings
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+/languages
+  get:
+    tags:
+      - languages
+      summary: Find pet by ID
+      description: Returns a single pet
+      operationId: getPetById
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: auth_key
+        in: body
+        description: authorization key
+        required: true
+        type: string
+        format: strng
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        403:
+          description: "Un authorized access"
+       
+      security:
+      - api_key: []
+  get:
+    tags:
+      - languages/{_id}
+      summary: Find languag by Id
+      description: Returns a single language
+      operationId: getByLanguageId
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: _id
+        in: path
+        description: Id of the language store in database.
+        required: true
+        type: string
+        format: strng
+      - name: _auth_key
+        in: body
+        description: Authorization key.
+        required: true
+        type: string
+        format: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        403:
+          description: "Un authorized access"
+        404:
+        description: "Not Found "
+       
+      security:
+      - api_key: []
+  post:
+    tags:
+      - languages
+      summary: Add a new language to the languages list.
+      description: Add a new Language.
+      operationId: getByLanguageId
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: auth_key
+        in: header
+        description: Authorization key.
+        required: true
+        type: string
+        format: string
+      - name: languageObject
+        in: body
+        description: Language object needed to save  in the database.
+        required: true
+         schema:
+          $ref: '#/definitions/Pet'
+      responses:
+        201:
+          description: Lanuage added successfully.
+          schema:
+            $ref: '#/definitions/language'
+        403:
+          description: "Un authorized access"
+        400:
+        description: "Bad Request the pay load is not in  corrent formate"
+       
+      security:
+      - api_key: []
+  put:
+    tags:
+      - languages
+      summary: Update a language  .
+      description: Update a language.
+      operationId: upateLanguageById
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: auth_key
+        in: header
+        description: Authorization key.
+        required: true
+        type: string
+        format: string
+      - name: languageObject
+        in: body
+        description: This the object that needs to be updated.
+        required: true
+         schema:
+          $ref: '#/definitions/Pet'
+      responses:
+        200:
+          description: Lanuage updated successfully.
+          schema:
+            $ref: '#/definitions/language'
+        403:
+          description: "Un authorized access"
+        400:
+        description: "Bad Request the pay load is not in  corrent formate"
+       
+      security:
+      - api_key: []
+  delete:
+    tags:
+      - languages/{_id}
+      summary: Delete a language  .
+      description: Delete a language.
+      operationId: deleteById
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: auth_key
+        in: header
+        description: Authorization key.
+        required: true
+        type: string
+        format: string
+      - name: _id
+        in: path
+        description: The _id of the language need to delete.
+        required: true
+         schema:
+          $ref: '#/definitions/Pet'
+      responses:
+        200:
+          description: Lanuage updated successfully.
+          schema:
+            $ref: '#/definitions/language'
+        403:
+          description: "Un authorized access"
+        400:
+        description: "Bad Request the pay load is not in  corrent formate"
+       
+      security:
+      - api_key: []
+schema:
+-"https"
+-"http"
